@@ -1,5 +1,15 @@
 .hero-section {
-  background-image: url(/ella-olsson-oPBjWBCcAEo-unsplash.jpg);
+  background-image: url(/ella-olsson-C1Q3qOTlegg-unsplash.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  padding-block: 100px;
+}
+
+.fit-data {
+  width: fit-content;
+}
+
+.cate-box {
+  padding: 8px 12px;
+  border-radius: 50%;
 }
