@@ -1,0 +1,24 @@
+{
+  "name": "recipe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caleb955/recipe.git"
+  },
+  "keywords": [],
+  "author": "group o",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Caleb955/recipe/issues"
+  },
+  "homepage": "https://github.com/Caleb955/recipe#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
