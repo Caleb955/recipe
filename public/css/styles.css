@@ -2,7 +2,6 @@
   background-image: url(/ella-olsson-C1Q3qOTlegg-unsplash.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  /* padding-block: 100px; */
   padding: 0;
 }
 
@@ -24,4 +23,15 @@
 .cate-box {
   padding: 8px 12px;
   border-radius: 50%;
+}
+
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-carte-name {
+  border-radius: 10px;
 }
