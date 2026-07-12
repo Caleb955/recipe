@@ -14,7 +14,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
 
     <script
       src="https://kit.fontawesome.com/fce603bd4c.js"
@@ -45,13 +48,13 @@
             class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
           >
             <li>
-              <a href="index.html" class="nav-link px-2 text-secondary">Home</a>
+              <a href="/" class="nav-link px-2 text-secondary">Home</a>
             </li>
             <li>
-              <a href="recipes.html" class="nav-link px-2 text-dark">Recipes</a>
+              <a href="recipes" class="nav-link px-2 text-dark">Recipes</a>
             </li>
             <li>
-              <a href="about.html" class="nav-link px-2 text-dark">About</a>
+              <a href="about" class="nav-link px-2 text-dark">About</a>
             </li>
             <!-- <li><a href="features.html" class="nav-link px-2 text-dark">Features</a></li> -->
           </ul>
@@ -201,7 +204,7 @@
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
-                src="/recipe-img/christopher-alvarenga-rQX9eVpSFz8-unsplash.jpg"
+                src="{{ url_for('static', filename='/recipe-img/christopher-alvarenga-rQX9eVpSFz8-unsplash.jpg') }}"
                 alt="Thumbnail"
                 height="225"
                 width="100%"
@@ -248,7 +251,7 @@
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
-                src="/recipe-img/femoree-kn_ANxnwCQ0-unsplash.jpg"
+                src="{{ url_for('static', filename='/recipe-img/femoree-kn_ANxnwCQ0-unsplash.jpg') }} "
                 alt="Thumbnail"
                 height="225"
                 width="100%"
@@ -295,7 +298,7 @@
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
-                src="/recipe-img/kalyani-akella-vCNLO20cuwY-unsplash.jpg"
+                src="{{ url_for('static', filename='/recipe-img/kalyani-akella-vCNLO20cuwY-unsplash.jpg') }}"
                 alt="Thumbnail"
                 height="225"
                 width="100%"
@@ -342,7 +345,7 @@
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
-                src="/recipe-img/keesha-s-kitchen-_y325luZNUs-unsplash.jpg"
+                src="{{ url_for('static', filename='/recipe-img/keesha-s-kitchen-_y325luZNUs-unsplash.jpg') }}"
                 alt="Thumbnail"
                 height="225"
                 width="100%"
@@ -389,7 +392,7 @@
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
-                src="/recipe-img/keesha-s-kitchen-PqG32DYCTM8-unsplash.jpg"
+                src="{{ url_for('static', filename='/recipe-img/keesha-s-kitchen-PqG32DYCTM8-unsplash.jpg') }}"
                 alt="Thumbnail"
                 height="225"
                 width="100%"
@@ -436,7 +439,7 @@
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
-                src="/recipe-img/keesha-s-kitchen-Yn065HfaXnE-unsplash.jpg"
+                src="{{ url_for('static', filename='/recipe-img/keesha-s-kitchen-Yn065HfaXnE-unsplash.jpg') }}"
                 alt="Thumbnail"
                 height="225"
                 width="100%"
@@ -593,6 +596,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <script src="src/index.js" defer></script>
+    <script src="{{ url_for('static', filename='index.js') }}" defer></script>
   </body>
 </html>
