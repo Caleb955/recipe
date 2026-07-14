@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for
+from models import get_all_recipes
 
 app = Flask(__name__)
 
@@ -42,6 +43,11 @@ def signup():
         else:
             return redirect(url_for('login'))
     return render_template('signup.html')
+
+@app.route('/get-recipes')
+def allRecipes():
+    recipes = get_all_recipes()
+    return recipes
 
 
 if __name__ == '__main__':

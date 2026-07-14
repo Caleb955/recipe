@@ -1,20 +1,20 @@
 :root {
-    --primary: #2ECC71;
-    --secondary: #FF7A00;
-    --accent: #FF4D4D;
-    --highlight: #e06f2d;
+  --primary: #2ecc71;
+  --secondary: #ff7a00;
+  --accent: #ff4d4d;
+  --highlight: #e06f2d;
 
-    --background: #FFF8F0;
-    --card: #FFFFFF;
+  --background: #fff8f0;
+  --card: #ffffff;
 
-    --text: #2D3436;
-    --muted-text: #6C757D;
+  --text: #2d3436;
+  --muted-text: #6c757d;
 }
 
 body {
-    background-color: var(--background);
-    color: var(--text);
-    font-family: "Poppins", sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
 }
 .btn {
   background-color: var(--secondary);
@@ -65,7 +65,7 @@ body {
   border-radius: 10px;
 }
 
-.btn-modal{
+.btn-modal {
   background-color: var(--background);
   color: var(--text);
   border-radius: 5px;
@@ -110,8 +110,9 @@ body {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  overflow: scroll;
   padding-bottom: 1rem;
+  scrollbar-width: none;
 }
 
 .recipe-carousel .recipe-card {
@@ -121,4 +122,3 @@ body {
   text-decoration: none;
   color: inherit;
 }
-

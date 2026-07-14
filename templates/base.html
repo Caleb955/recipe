@@ -18,8 +18,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
-    {%block xtracss%}
-    {%endblock%}
+    {%block xtracss%} {%endblock%}
     <script
       src="https://kit.fontawesome.com/fce603bd4c.js"
       crossorigin="anonymous"
@@ -69,10 +68,18 @@
             />
           </form> -->
           <div class="text-end">
-            <button onclick="window.location.href='{{ url_for('login') }}'" type="button" class="btn me-2">
+            <button
+              onclick="window.location.href='{{ url_for('login') }}'"
+              type="button"
+              class="btn me-2"
+            >
               Login
             </button>
-            <button onclick="window.location.href='{{ url_for('signup') }}'" type="button" class="btn btn-extra">
+            <button
+              onclick="window.location.href='{{ url_for('signup') }}'"
+              type="button"
+              class="btn btn-extra"
+            >
               Sign-up
             </button>
           </div>
@@ -86,7 +93,9 @@
       <footer
         class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
       >
-        <p class="col-md-4 mb-0 text-body-secondary">© Group 10, Computer Studies 121</p>
+        <p class="col-md-4 mb-0 text-body-secondary">
+          © Group 10, Computer Studies 121
+        </p>
         <a
           href="/"
           class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
@@ -96,14 +105,16 @@
             <use xlink:href="#bootstrap"></use>
           </svg>
         </a>
-        </footer>
+      </footer>
     </div>
+    <button class="btn btn-lg btn-primary">
+      <a href="get-recipes">get recipes</a>
+    </button>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    {% block scripts %}
-    {% endblock %}
+    {% block scripts %} {% endblock %}
   </body>
 </html>
