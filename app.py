@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models import get_all_recipes
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
