@@ -11,7 +11,7 @@ const port = 3000;
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/src/index.html");
+  res.sendFile(__dirname + "/templates/index.html");
 });
 
 app.listen(port, () => {

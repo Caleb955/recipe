@@ -1,88 +1,14 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Group 10 Recipes</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/styles.css') }}"
-    />
+{% extends "base.html" %}
+{% block title %}Home - Group 10 Recipes{% endblock %}
 
-    <script
-      src="https://kit.fontawesome.com/fce603bd4c.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <header class="p-3">
-      <div class="container">
-        <div
-          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
-        >
-          <a
-            href="/"
-            class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
-          >
-            <svg
-              class="bi me-2"
-              width="40"
-              height="32"
-              role="img"
-              aria-label="Bootstrap"
-            >
-              <use xlink:href="#bootstrap"></use>
-            </svg>
-          </a>
-          <ul
-            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-          >
-            <li>
-              <a href="/" class="nav-link px-2 text-secondary">Home</a>
-            </li>
-            <li>
-              <a href="recipes" class="nav-link px-2 text-dark">Recipes</a>
-            </li>
-            <li>
-              <a href="about" class="nav-link px-2 text-dark">About</a>
-            </li>
-            <!-- <li><a href="features.html" class="nav-link px-2 text-dark">Features</a></li> -->
-          </ul>
 
-          <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-            <input
-              type="search"
-              class="form-control form-control-dark text-bg-dark"
-              placeholder="Search..."
-              aria-label="Search"
-            />
-          </form> -->
-          <div class="text-end">
-            <button type="button" class="btn btn-outline-dark me-2">
-              Login
-            </button>
-            <button type="button" class="btn bg-success-subtle">Sign-up</button>
-          </div>
-        </div>
-      </div>
-    </header>
-
+{% block content %}
     <div class="text-center hero-section">
       <div class="hero-container px-4 py-5">
         <div class="overlay"></div>
         <h1 class="display-5 fw-bold text-body-emphasis">
-          <span class="text-success">DISCOVER,</span>
-          <span class="fw-medium text-light"
+          <span class="text-light">DISCOVER,</span>
+          <span class="fw-bold" style="color: #FFC857"
             >CREATE AND SHARE RECIPES EFFORTLESSLY!</span
           >
         </h1>
@@ -92,15 +18,7 @@
             recipe. No cooking guesswork, just culinary inspiration
           </p>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button
-              type="button"
-              class="btn bg-success-subtle btn-lg px-4 gap-3"
-            >
-              View Recipes
-            </button>
-            <button type="button" class="btn btn-outline-dark btn-lg px-4">
-              Signup
-            </button>
+          
           </div>
         </div>
       </div>
@@ -119,7 +37,7 @@
             you're a beginner or an experienced home cook, we've got recipes
             you'll love.
           </p>
-          <a href="#" class="btn btn-outline-secondary btn-lg"
+          <a onclick="window.location.href='{{ url_for('recipes') }}'" class="btn btn-extra btn-lg"
             >Browse Recipes</a
           >
         </div>
@@ -127,7 +45,7 @@
           <div class="row row-cols-1 row-cols-sm-2 g-4">
             <div class="col d-flex flex-column gap-2">
               <div
-                class="feature-icon-small d-inline-flex align-items-center justify-content-center bg-success-subtle bg-gradient fs-4 rounded-3 align-self-start px-3 py-2"
+                class="feature-icon-small d-inline-flex align-items-center justify-content-center fs-4 rounded-3 align-self-start px-3 py-2"
               >
                 <i class="bi bi-book-fill"></i>
               </div>
@@ -141,9 +59,9 @@
             </div>
             <div class="col d-flex flex-column gap-2">
               <div
-                class="feature-icon-small d-inline-flex align-items-center justify-content-center bg-success-subtle bg-gradient fs-4 rounded-3 align-self-start px-3 py-2"
+                class="feature-icon-small d-inline-flex align-items-center justify-content-center bg-gradient fs-4 rounded-3 align-self-start px-3 py-2"
               >
-                <i class="bi bi-heart-fill"></i>
+                <i class="bi bi-heart"></i>
               </div>
               <h4 class="fw-semibold mb-0 text-body-emphasis">
                 Save Your Favorites
@@ -155,7 +73,7 @@
             </div>
             <div class="col d-flex flex-column gap-2">
               <div
-                class="feature-icon-small d-inline-flex align-items-center justify-content-center bg-success-subtle bg-gradient fs-4 rounded-3 align-self-start px-3 py-2"
+                class="feature-icon-small d-inline-flex align-items-center justify-content-center bg-gradient fs-4 rounded-3 align-self-start px-3 py-2"
               >
                 <i class="bi bi-search"></i>
               </div>
@@ -169,7 +87,7 @@
             </div>
             <div class="col d-flex flex-column gap-2">
               <div
-                class="feature-icon-small align-self-start d-inline-flex align-items-center justify-content-center bg-success-subtle bg-gradient fs-4 rounded-3 px-3 py-2"
+                class="feature-icon-small align-self-start d-inline-flex align-items-center justify-content-center bg-gradient fs-4 rounded-3 px-3 py-2"
               >
                 <i class="bi bi-stars"></i>
               </div>
@@ -187,21 +105,21 @@
       </div>
     </div>
 
-    <div class="album py-5 bg-body-tertiary">
+    
+
+    
+
+    <div class="album py-5">
       <div class="container">
         <div class="pb-2 border-bottom d-flex justify-content-between">
           <h2>FEATURED RECIPES</h2>
-
-          <button type="button" class="btn btn-outline-secondary">
-            Explore All Recipes
-          </button>
         </div>
 
         <div
-          class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center d-flex g-3 py-5"
+          class="recipe-carousel"
         >
-          <div class="col">
-            <div class="card shadow-sm">
+          <div class="col-md-4 ">
+            <div class="card shadow-sm ">
               <img
                 class="bd-placeholder-img card-img-top"
                 src="{{ url_for('static', filename='/recipe-img/christopher-alvarenga-rQX9eVpSFz8-unsplash.jpg') }}"
@@ -247,7 +165,7 @@
             </div>
           </div>
 
-          <div class="col">
+          <div class="col-md-4 ">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -294,7 +212,7 @@
             </div>
           </div>
 
-          <div class="col">
+          <div class="col-md-4">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -341,7 +259,7 @@
             </div>
           </div>
 
-          <div class="col">
+          <div class="col-md-4">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -388,7 +306,7 @@
             </div>
           </div>
 
-          <div class="col">
+          <div class="col-md-4">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -435,7 +353,7 @@
             </div>
           </div>
 
-          <div class="col">
+          <div class="col-md-4">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -484,118 +402,8 @@
         </div>
       </div>
     </div>
+    {% endblock %}
 
-    <div class="container px-4 py-5" id="custom-cards">
-      <h2 class="pb-2 border-bottom">DISCOVER RECIPES BY CATEGORY</h2>
-
-      <div
-        class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-3 py-5"
-      >
-        <div class="col">
-          <div
-            class="card card-cover h-100 overflow-hidden border border-light-subtle border-2 rounded-4 d-flex"
-          >
-            <div class="d-flex flex-column align-items-center py-2">
-              <div class="fit-data cate-box bg-success-subtle">
-                <i class="fa-solid fa-bowl-food text-success"></i>
-              </div>
-
-              <div class="text-shadow-1 mt-3">
-                <h3 class="display-6 lh-1 fw-normal fs-4">All</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div
-            class="card card-cover h-100 overflow-hidden border border-light-subtle border-2 rounded-4"
-          >
-            <div class="d-flex flex-column align-items-center py-2">
-              <div class="fit-data cate-box bg-danger-subtle">
-                <i class="fa-solid fa-pizza-slice text-danger"></i>
-              </div>
-
-              <div class="fit-data text-shadow-1 mt-3">
-                <h3 class="display-6 lh-1 fw-normal fs-4">Lunch</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div
-            class="card card-cover h-100 overflow-hidden border border-light-subtle border-2 rounded-4"
-          >
-            <div class="d-flex flex-column align-items-center py-2">
-              <div class="fit-data cate-box bg-primary-subtle">
-                <i class="fa-solid fa-mug-saucer text-primary"></i>
-              </div>
-
-              <div class="text-shadow-1 fit-data mt-3">
-                <h3 class="display-6 lh-1 fw-normal fs-4">Breakfast</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div
-            class="card card-cover h-100 overflow-hidden border border-light-subtle border-2 rounded-4"
-          >
-            <div class="d-flex flex-column align-items-center py-2">
-              <div class="fit-data cate-box bg-warning-subtle">
-                <i class="fa-solid fa-utensils text-warning"></i>
-              </div>
-
-              <div class="text-shadow-1 fit-data mt-3">
-                <h3 class="display-6 lh-1 fw-normal fs-4">Dinner</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <footer
-        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
-      >
-        <p class="col-md-4 mb-0 text-body-secondary">© 2026 Company, Inc</p>
-        <a
-          href="/"
-          class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-          aria-label="Bootstrap"
-        >
-          <svg class="bi me-2" width="40" height="32" aria-hidden="true">
-            <use xlink:href="#bootstrap"></use>
-          </svg>
-        </a>
-        <ul class="nav col-md-4 justify-content-end">
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Features</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Recipes</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">About</a>
-          </li>
-        </ul>
-      </footer>
-    </div>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
+    {% block scripts %}
     <script src="{{ url_for('static', filename='index.js') }}" defer></script>
-  </body>
-</html>
+    {% endblock %}

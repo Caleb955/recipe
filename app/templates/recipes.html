@@ -1,22 +1,8 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Recipe Box — Feed Demo</title>
+{% extends "base.html" %}
 
-    <!-- Bootstrap 5 (grid + modal component) -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+{% block title %}The Recipe Box — Feed Demo{% endblock %}
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-
+{% block xtracss %}
     <style>
       :root {
         --paper: #f5ead6;
@@ -27,16 +13,10 @@
         --mustard: #d6a24c;
       }
 
-      * {
-        box-sizing: border-box;
-      }
-
       body {
         background: var(--paper);
         color: var(--ink);
         font-family: "Work Sans", sans-serif;
-        margin: 0;
-        padding: 2.5rem 1.5rem 4rem;
       }
 
       .feed-header {
@@ -236,8 +216,11 @@
         font-size: 0.93rem;
       }
     </style>
+    {% endblock %}
+    
   </head>
   <body>
+    {% block content %}
     <div class="feed-header">
       <div class="eyebrow">Case Study 10</div>
       <h1>The Recipe Box</h1>
@@ -265,11 +248,86 @@
       </div>
     </div>
 
-    <script src="{{ url_for('static', filename='recipe.js') }}"></script>
+    <div class="container px-4 py-5" id="custom-cards">
+      <h2 class="pb-2 border-bottom">DISCOVER RECIPES BY CATEGORY</h2>
+
+      <div
+        class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-3 py-5"
+      >
+        <div class="col">
+          <div
+            class="card card-cover h-100 overflow-hidden border border-light-subtle border-2 rounded-4 d-flex"
+          >
+            <div class="d-flex flex-column align-items-center py-2">
+              <div class="fit-data cate-box bg-success-subtle">
+                <i class="fa-solid fa-bowl-food text-success"></i>
+              </div>
+
+              <div class="text-shadow-1 mt-3">
+                <h3 class="display-6 lh-1 fw-normal fs-4">All</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div
+            class="card card-cover h-100 overflow-hidden border border-light-subtle border-2 rounded-4"
+          >
+            <div class="d-flex flex-column align-items-center py-2">
+              <div class="fit-data cate-box bg-danger-subtle">
+                <i class="fa-solid fa-pizza-slice text-danger"></i>
+              </div>
+
+              <div class="fit-data text-shadow-1 mt-3">
+                <h3 class="display-6 lh-1 fw-normal fs-4">Lunch</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div
+            class="card card-cover h-100 overflow-hidden border border-light-subtle border-2 rounded-4"
+          >
+            <div class="d-flex flex-column align-items-center py-2">
+              <div class="fit-data cate-box bg-primary-subtle">
+                <i class="fa-solid fa-mug-saucer text-primary"></i>
+              </div>
+
+              <div class="text-shadow-1 fit-data mt-3">
+                <h3 class="display-6 lh-1 fw-normal fs-4">Breakfast</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div
+            class="card card-cover h-100 overflow-hidden border border-light-subtle border-2 rounded-4"
+          >
+            <div class="d-flex flex-column align-items-center py-2">
+              <div class="fit-data cate-box bg-warning-subtle">
+                <i class="fa-solid fa-utensils text-warning"></i>
+              </div>
+
+              <div class="text-shadow-1 fit-data mt-3">
+                <h3 class="display-6 lh-1 fw-normal fs-4">Dinner</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='recipe.js') }}"></script>
+    {% endblock %}
   </body>
 </html>
