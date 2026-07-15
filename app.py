@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from models import get_all_recipes
+from models import get_all_recipes, login_user
 from dotenv import load_dotenv
 
 app = Flask(__name__)
@@ -23,12 +23,16 @@ def about():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form.get('email', '').strip()
-        password = request.form.get('password', '')
-        if email != 'admin@group10.com' or password != 'admin123':
-            return render_template('login.html', error='Invalid email or password.')
-        elif email == 'admin@group10.com' and password == 'admin123':
-            return redirect(url_for('recipes'))
+        email = request.form.get('email', '')
+
+        response = login_user(email)
+        print(response)
+        # email = request.form.get('email', '').strip()
+        # password = request.form.get('password', '')
+        # if email != 'admin@group10.com' or password != 'admin123':
+        #     return render_template('login.html', error='Invalid email or password.')
+        # elif email == 'admin@group10.com' and password == 'admin123':
+        #     return redirect(url_for('recipes'))
     return render_template('login.html')
 
 

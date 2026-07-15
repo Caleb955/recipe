@@ -47,13 +47,25 @@
             class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
           >
             <li>
-              <a href="/" class="nav-link px-2 {{ 'text-secondary' if request.path == '/' else 'text-dark' }}">Home</a>
+              <a
+                href="/"
+                class="nav-link px-2 {{ 'text-secondary' if request.path == '/' else 'text-dark' }}"
+                >Home</a
+              >
             </li>
             <li>
-              <a href="/recipes" class="nav-link px-2 {{ 'text-secondary' if request.path == '/recipes' else 'text-dark' }}">Recipes</a>
+              <a
+                href="/recipes"
+                class="nav-link px-2 {{ 'text-secondary' if request.path == '/recipes' else 'text-dark' }}"
+                >Recipes</a
+              >
             </li>
             <li>
-              <a href="/about" class="nav-link px-2 {{ 'text-secondary' if request.path == '/about' else 'text-dark' }}">About</a>
+              <a
+                href="/about"
+                class="nav-link px-2 {{ 'text-secondary' if request.path == '/about' else 'text-dark' }}"
+                >About</a
+              >
             </li>
           </ul>
 
@@ -74,15 +86,29 @@
         <form method="POST" action="/login">
           <div class="mb-3">
             <label for="loginEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="loginEmail" name="email" required>
+            <input
+              type="email"
+              class="form-control"
+              id="loginEmail"
+              name="email"
+              required
+            />
           </div>
           <div class="mb-3">
             <label for="loginPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="loginPassword" name="password" required>
+            <input
+              type="password"
+              class="form-control"
+              id="loginPassword"
+              name="password"
+              required
+            />
           </div>
           <button type="submit" class="btn w-100">Login</button>
         </form>
-        <p class="text-center mt-3 mb-0">Don't have an account? <a href="/signup">Sign up</a></p>
+        <p class="text-center mt-3 mb-0">
+          Don't have an account? <a href="/signup">Sign up</a>
+        </p>
       </div>
     </div>
 
@@ -91,5 +117,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <script src="{{ url_for('static', filename='js/user.js') }}"></script>
   </body>
 </html>
