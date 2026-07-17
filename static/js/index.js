@@ -7,9 +7,11 @@ async function loadRecipes() {
     return response.json();
   });
 
+  console.log(recipes);
+
   recipes.forEach((r) => {
     indexRecipeHTML += `
-      <div class="recipe-element js-recipe-element">
+      <div class="recipe-element js-recipe-element" data-id=${r.id}>
         <div class="card shadow-sm">
             <img
               class="bd-placeholder-img card-img-top"
@@ -61,7 +63,8 @@ async function loadRecipes() {
 
   document.querySelectorAll(".js-recipe-element").forEach((element) => {
     element.addEventListener("click", () => {
-      window.location.href = "/recipe_detail";
+      const { id } = element.dataset;
+      window.location.href = `/recipe_detail?id=${id}`;
     });
   });
 }

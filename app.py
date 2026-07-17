@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from models import get_all_recipes, login_user
+from models import get_all_recipes, login_user, get_recipe
 from dotenv import load_dotenv
 
 app = Flask(__name__)
@@ -56,7 +56,11 @@ def allRecipes():
 
 @app.route('/recipe_detail')
 def recipeInfo():
-    return render_template('recipe_detail.html')
+    recipe_id = request.args.get("id", type=int)
+
+    recipe = get_recipe(recipe_id)
+    print(recipe)
+    return recipe
 
 
 if __name__ == '__main__':
