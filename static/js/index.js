@@ -9,8 +9,9 @@ async function loadRecipes() {
 
   console.log(recipes);
 
-  recipes.forEach((r) => {
-    indexRecipeHTML += `
+  recipes.forEach((r, i) => {
+    if (i <= 3) {
+      indexRecipeHTML += `
       <div class="recipe-element js-recipe-element" data-id=${r.id}>
         <div class="card shadow-sm">
             <img
@@ -56,7 +57,8 @@ async function loadRecipes() {
             </div>
           </div>
         </div>
-    `;
+      `;
+    }
   });
 
   recipeElement.innerHTML = indexRecipeHTML;
