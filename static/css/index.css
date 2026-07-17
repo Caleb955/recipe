@@ -1,0 +1,17 @@
+.card {
+  height: stretch;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.card-title {
+  min-height: 2.6em;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

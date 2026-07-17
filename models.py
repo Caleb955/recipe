@@ -14,6 +14,19 @@ def get_all_recipes():
 
     return recipes
 
+def get_recipe(id):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute('SELECT * FROM recipes WHERE id = %s', (id, ))
+
+    recipe = cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    return recipe
+
 def login_user(email):
     conn = get_connection()
     cur = conn.cursor()

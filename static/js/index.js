@@ -7,18 +7,20 @@ async function loadRecipes() {
     return response.json();
   });
 
+  console.log(recipes);
+
   recipes.forEach((r) => {
     indexRecipeHTML += `
-      <div class="col-md-4">
+      <div class="recipe-element js-recipe-element" data-id=${r.id}>
         <div class="card shadow-sm">
             <img
-                class="bd-placeholder-img card-img-top"
-                src="${r.image_url}"
-                alt="banner"
-                height="225"
-                width="100%"
-                style="object-fit: cover"
-              />
+              class="bd-placeholder-img card-img-top"
+              src="${r.image_url}"
+              alt="banner"
+              height="225"
+              width="100%"
+              style="object-fit: cover"
+            />
 
             <div class="card-body">
               <div class="card-carte mb-2 d-flex justify-content-between">
@@ -46,7 +48,7 @@ async function loadRecipes() {
                   longer.
                 </p>
                 <div
-                  class="d-flex justify-content-between align-items-center"
+                  class="d-flex justify-content-between align-items-center mt-auto"
                 >
                   <small class="text-body-secondary">7-11-26</small>
                 </div>
@@ -58,6 +60,13 @@ async function loadRecipes() {
   });
 
   recipeElement.innerHTML = indexRecipeHTML;
+
+  document.querySelectorAll(".js-recipe-element").forEach((element) => {
+    element.addEventListener("click", () => {
+      const { id } = element.dataset;
+      window.location.href = `/recipe_detail?id=${id}`;
+    });
+  });
 }
 
 loadRecipes();
