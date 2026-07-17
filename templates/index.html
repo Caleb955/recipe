@@ -18,6 +18,11 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+
     <script
       src="https://kit.fontawesome.com/fce603bd4c.js"
       crossorigin="anonymous"
@@ -178,7 +183,7 @@
         </div>
 
         <div class="recipe-carousel js-recipe-carousel">
-          <div class="col-md-4">
+          <div class="recipe-element">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -224,7 +229,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="recipe-element">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -270,7 +275,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="recipe-element">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -316,7 +321,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="recipe-element">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -362,7 +367,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="recipe-element">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -408,7 +413,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="recipe-element">
             <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
@@ -483,6 +488,6 @@
     ></script>
 
     <!-- experimental js file pulling from database -->
-    <!-- <script src="{{ url_for('static', filename='js/index.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
   </body>
 </html>

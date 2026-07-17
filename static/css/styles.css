@@ -58,6 +58,7 @@ body {
 .text-truncate-2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
 }
 
@@ -113,6 +114,7 @@ body {
   overflow: scroll;
   padding-bottom: 1rem;
   scrollbar-width: none;
+  align-items: stretch;
 }
 
 .recipe-carousel .recipe-card {
@@ -121,4 +123,9 @@ body {
   scroll-snap-align: start;
   text-decoration: none;
   color: inherit;
+}
+
+.recipe-element {
+  min-width: 240px;
+  cursor: pointer;
 }
