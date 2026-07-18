@@ -64,7 +64,7 @@ async function loadRecipes() {
   document.querySelectorAll(".js-recipe-element").forEach((element) => {
     element.addEventListener("click", () => {
       const { id } = element.dataset;
-      window.location.href = `/recipe_detail?id=${id}`;
+      window.location.href = `/recipe_page?id=${id}`;
     });
   });
 }
