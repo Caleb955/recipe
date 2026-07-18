@@ -59,11 +59,15 @@ def recipeDetailPage():
     return render_template('recipe_detail.html')
 
 @app.route('/recipe_detail')
-def recipeInfo():
-    recipe_id = request.args.get("id", type=int)
+def recipePage():
+    return render_template('recipe_detail.html')
+
+@app.route('/get_recipe')
+def getRecipe():
+    recipe_id = request.args.get('id')
 
     recipe = get_recipe(recipe_id)
-    print(recipe)
+
     return recipe
 
 if __name__ == '__main__':
