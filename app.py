@@ -54,6 +54,10 @@ def allRecipes():
     recipes = get_all_recipes()
     return recipes
 
+@app.route('/recipe_page')
+def recipe_page():
+    return render_template('recipe_detail.html')
+
 @app.route('/recipe-detail')
 def recipeDetailPage():
     return render_template('recipe_detail.html')
