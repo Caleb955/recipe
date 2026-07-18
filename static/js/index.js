@@ -9,8 +9,9 @@ async function loadRecipes() {
 
   console.log(recipes);
 
-  recipes.forEach((r) => {
-    indexRecipeHTML += `
+  recipes.forEach((r, i) => {
+    if (i <= 3) {
+      indexRecipeHTML += `
       <div class="recipe-element js-recipe-element" data-id=${r.id}>
         <div class="card shadow-sm">
             <img
@@ -57,6 +58,9 @@ async function loadRecipes() {
           </div>
         </div>
     `;
+    }
+
+
   });
 
   recipeElement.innerHTML = indexRecipeHTML;
@@ -64,7 +68,7 @@ async function loadRecipes() {
   document.querySelectorAll(".js-recipe-element").forEach((element) => {
     element.addEventListener("click", () => {
       const { id } = element.dataset;
-      window.location.href = `/recipe_detail?id=${id}`;
+      window.location.href = `/recipe-detail?id=${id}`;
     });
   });
 }

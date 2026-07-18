@@ -54,6 +54,10 @@ def allRecipes():
     recipes = get_all_recipes()
     return recipes
 
+@app.route('/recipe-detail')
+def recipeDetailPage():
+    return render_template('recipe_detail.html')
+
 @app.route('/recipe_detail')
 def recipeInfo():
     recipe_id = request.args.get("id", type=int)
@@ -61,7 +65,6 @@ def recipeInfo():
     recipe = get_recipe(recipe_id)
     print(recipe)
     return recipe
-
 
 if __name__ == '__main__':
     app.run(debug=True)
