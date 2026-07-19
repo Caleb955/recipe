@@ -1,53 +1,25 @@
-from db import get_connection
-from flask import jsonify
+from flask_sqlalchemy import SQLAlchemy
+from datetime import date
 
-def get_all_recipes():
-    conn = get_connection()
-    cur = conn.cursor()
+db = SQLAlchemy()
 
-    cur.execute('SELECT * FROM recipes')
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    creation_date = db.Column(db.Date, default=date.today)
 
-    recipes = cur.fetchall()
-
-    cur.close()
-    conn.close()
-
-    return recipes
-
-def get_recipe(id):
-    conn = get_connection()
-    cur = conn.cursor()
-
-    cur.execute('SELECT * FROM recipes WHERE id = %s', (id, ))
-
-    recipe = cur.fetchone()
-
-    cur.close()
-    conn.close()
-
-    return recipe
-
-def login_user(email):
-    conn = get_connection()
-    cur = conn.cursor()
-
-    cur.execute('SELECT * FROM users WHERE email = %s', (email,))
-
-    user = cur.fetchone()
-
-    cur.close()
-    conn.close()
-
-    if user is None:
-        return jsonify({
-            "success": False,
-            "message": "Email not found try signing up"
-        })
-
-    if user:
-        return user
-
-
-# def signup_user():
-#     conn = get_connection()
-#     cur = conn.
+class Recipe(db.Model):
+    __tablename__ = 'recipes'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)  # None = no owner
+    title = db.Column(db.String(200))
+    category = db.Column(db.String(50))
+    time_string = db.Column(db.String(50))
+    image_url = db.Column(db.String(500))
+    ingredients = db.Column(db.JSON)
+    steps = db.Column(db.JSON)
+    servings = db.Column(db.String(50))

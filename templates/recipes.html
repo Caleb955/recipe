@@ -272,6 +272,11 @@
             <li>
               <a href="about" class="nav-link px-2 text-dark">About</a>
             </li>
+            {% if session.user %}
+            <li>
+              <a href="/add-recipe" class="btn btn-extra">+ Add Recipe</a>
+            </li>
+            {% endif %}
           </ul>
 
           <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -283,8 +288,14 @@
           />
         </form> -->
           <div class="text-end">
+            {% if session.user %}
+            <form action="/logout" method="post" class="d-inline">
+              <button type="submit" class="btn">Logout</button>
+            </form>
+            {% else %}
             <a href="/login" class="btn me-2">Login</a>
             <a href="/signup" class="btn btn-extra">Sign-up</a>
+            {% endif %}
           </div>
         </div>
       </div>
