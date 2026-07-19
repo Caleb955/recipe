@@ -166,3 +166,6 @@ __pycache__/
 
 # Flask instance folder (if you use one later)
 instance/
+
+*.db
+app.db
