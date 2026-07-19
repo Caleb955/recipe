@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Recipe
 
 app = Flask(__name__)
-app.secret_key = 'group10recipes01SecretKey1001'
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-for-local-only')
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
