@@ -83,6 +83,10 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
+@app.route('/new_recipe')
+def new_recipe():
+    return render_template('add_recipe.html')
+
 @app.route('/add-recipe', methods=['GET', 'POST'])
 def add_recipe():
     if 'user' not in session:
