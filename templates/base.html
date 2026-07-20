@@ -50,26 +50,58 @@
             class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
           >
             <li>
-              <a href="/" class="nav-link px-2 {{ 'text-secondary' if request.path == '/' else 'text-dark' }}">Home</a>
+              <a
+                href="/"
+                class="nav-link px-2 {{ 'text-secondary' if request.path == '/' else 'text-dark' }}"
+                >Home</a
+              >
             </li>
             <li>
-              <a href="/recipes" class="nav-link px-2 {{ 'text-secondary' if request.path == '/recipes' else 'text-dark' }}">Recipes</a>
+              <a
+                href="/recipes"
+                class="nav-link px-2 {{ 'text-secondary' if request.path == '/recipes' else 'text-dark' }}"
+                >Recipes</a
+              >
             </li>
             <li>
-              <a href="/about" class="nav-link px-2 {{ 'text-secondary' if request.path == '/about' else 'text-dark' }}">About</a>
+              <a
+                href="/about"
+                class="nav-link px-2 {{ 'text-secondary' if request.path == '/about' else 'text-dark' }}"
+                >About</a
+              >
             </li>
-            {% if session.user %}
-            <li>
-              <a href="/add-recipe" class="btn btn-extra">+ Add Recipe</a>
-            </li>
-            {% endif %}
           </ul>
 
           <div class="text-end">
             {% if session.user %}
-            <form action="/logout" method="post" class="d-inline">
-              <button type="submit" class="btn">Logout</button>
-            </form>
+            <div class="d-flex">
+              <div class="dropdown text-end ms-2">
+                <a
+                  href="#"
+                  class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="https://github.com/mdo.png"
+                    alt="mdo"
+                    width="32"
+                    height="32"
+                    class="rounded-circle"
+                  />
+                </a>
+                <ul class="dropdown-menu text-small" style="">
+                  <li><a class="dropdown-item" href="#">New project...</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="/"> Signout </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
             {% else %}
             <a href="/login" class="btn me-2">Login</a>
             <a href="/signup" class="btn btn-extra">Sign-up</a>
@@ -86,7 +118,7 @@
         class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
       >
         <p class="col-md-4 mb-0 text-body-secondary">
-           Group 10, Computer Studies 121.
+          Group 10, Computer Studies 121.
         </p>
         <a
           href="/"
