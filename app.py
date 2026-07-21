@@ -110,7 +110,9 @@ def add_recipe():
         return redirect(url_for('recipes'))
     return render_template('add_recipe.html')
 
-if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # creates app.db + tables automatically if missing
-    app.run(debug=True)
+
+
+if __name__ == '__main__':
+    app.run(port=3000, debug=True)
