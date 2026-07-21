@@ -233,6 +233,13 @@
         padding: 0.3rem 0;
         font-size: 0.93rem;
       }
+
+      .rounded-circle {
+        width: 32px;
+        height: 32px;
+        display: inline-block;
+        text-align: center;
+      }
     </style>
 
     <script
@@ -292,13 +299,12 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <img
-                    src="https://github.com/mdo.png"
-                    alt="mdo"
-                    width="32"
-                    height="32"
+                  <div
                     class="rounded-circle"
-                  />
+                    style="background-color:  {{ session.user.color }}"
+                  >
+                    <span>{{ session.user.first_name }}</span>
+                  </div>
                 </a>
                 <ul class="dropdown-menu text-small">
                   <li>

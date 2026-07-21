@@ -82,24 +82,17 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <!-- <img
-                    src="https://github.com/mdo.png"
-                    alt="mdo"
-                    width="32"
-                    height="32"
-                    class="rounded-circle"
-                  /> -->
                   <div
                     class="rounded-circle"
                     style="
-                      background-color: aqua;
+                      background-color: {{ session.user.color }};
                       width: 32px;
                       height: 32px;
                       display: inline-block;
                       text-align: center;
                     "
                   >
-                    <span>U</span>
+                    <span>{{ session.user.first_name }}</span>
                   </div>
                 </a>
 

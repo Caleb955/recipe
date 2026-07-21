@@ -76,7 +76,9 @@ def login():
         if not user or not check_password_hash(user.password, password):
             return render_template('login.html', error='Invalid email or password.')
 
-        session['user'] = {'id': user.id, 'first_name': user.first_name, 'email': user.email}
+        shortName = user.first_name[:2]
+        print(shortName)
+        session['user'] = {'id': user.id, 'first_name': shortName, 'email': user.email, 'color': user.color}
         return redirect(url_for('recipes'))
     return render_template('login.html')
 
