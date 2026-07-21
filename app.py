@@ -51,6 +51,7 @@ def signup():
         last_name = request.form.get('last_name', '').strip()
         email = request.form.get('email', '').strip()
         password = request.form.get('password', '')
+        color = request.form.get('color', '').strip()
 
         if not first_name or not last_name or not email or not password:
             return render_template('signup.html', error='All fields are required.')
@@ -58,9 +59,10 @@ def signup():
             return render_template('signup.html', error='An account with this email already exists.')
 
         new_user = User(first_name=first_name, last_name=last_name, email=email,
-                         password=generate_password_hash(password))
+                         password=generate_password_hash(password), color=color)
         db.session.add(new_user)
         db.session.commit()
+
         return redirect(url_for('login'))
     return render_template('signup.html')
 
