@@ -303,14 +303,13 @@
                     class="rounded-circle"
                     style="background-color:  {{ session.user.color if session.user.color else lightslategray }}"
                   >
-                    <small>{{ session.user.first_name }}</small>
+                    <small>{{ session.user.short_name }}</small>
                   </div>
                 </a>
                 <ul class="dropdown-menu text-small">
                   <li>
                     <a class="dropdown-item" href="/new_recipe">New recipe</a>
                   </li>
-                  <li><a class="dropdown-item" href="#">Manage recipes</a></li>
                   <li><a class="dropdown-item" href="/profile">Profile</a></li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>

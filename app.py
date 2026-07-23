@@ -83,9 +83,7 @@ def login():
         if not user or not check_password_hash(user.password, password):
             return render_template('login.html', error='Invalid email or password.')
 
-        shortName = user.first_name[:2]
-        print(shortName)
-        session['user'] = {'id': user.id, 'first_name': shortName, 'email': user.email, 'color': user.color}
+        session['user'] = {'id': user.id,'short_name': user.first_name[:2], 'first_name': user.first_name, 'last_name': user.last_name, 'email': user.email, 'color': user.color}
         return redirect(url_for('recipes'))
     return render_template('login.html')
 
@@ -132,6 +130,11 @@ def add_recipe():
 
 @app.route('/profile')
 def profile():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+
+    user = session.get("user")
+    print(user['first_name'])
     return render_template('profile.html')
 
 if __name__ == '__main__':
