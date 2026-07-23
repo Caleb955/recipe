@@ -301,17 +301,17 @@
                 >
                   <div
                     class="rounded-circle"
-                    style="background-color:  {{ session.user.color }}"
+                    style="background-color:  {{ session.user.color if session.user.color else lightslategray }}"
                   >
-                    <span>{{ session.user.first_name }}</span>
+                    <small>{{ session.user.first_name }}</small>
                   </div>
                 </a>
                 <ul class="dropdown-menu text-small">
                   <li>
                     <a class="dropdown-item" href="/new_recipe">New recipe</a>
                   </li>
-                  <li><a class="dropdown-item" href="#">Settings</a></li>
-                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Manage recipes</a></li>
+                  <li><a class="dropdown-item" href="/profile">Profile</a></li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>
                     <form action="/logout" method="post">
@@ -458,6 +458,6 @@
 
     <!-- experimental data fetching on the recipe page -->
 
-    <script src="{{ url_for('static', filename='js/recipes.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/recipes.js') }}"></script> -->
   </body>
 </html>

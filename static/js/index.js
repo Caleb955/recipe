@@ -16,7 +16,7 @@ async function loadRecipes() {
         <div class="card shadow-sm">
             <img
               class="bd-placeholder-img card-img-top"
-              src="${r.image_url}"
+              src="${r.image}"
               alt="banner"
               height="225"
               width="100%"
@@ -51,7 +51,7 @@ async function loadRecipes() {
                 <div
                   class="d-flex justify-content-between align-items-center mt-auto"
                 >
-                  <small class="text-body-secondary">7-11-26</small>
+                  <small class="text-body-secondary">${new Date(r.creation_date).toLocaleDateString().replaceAll("/", "-")}</small>
                 </div>
               </div>
             </div>
@@ -59,8 +59,6 @@ async function loadRecipes() {
         </div>
     `;
     }
-
-
   });
 
   recipeElement.innerHTML = indexRecipeHTML;

@@ -11,14 +11,13 @@ async function loadRecipes() {
     document.getElementById("recipeModal"),
   );
 
-  // Build the feed
   recipes.forEach((r, i) => {
     const card = document.createElement("article");
     card.className = "recipe-card";
-    card.tabIndex = 0; // keyboard-focusable, since it's not a real <a>/<button>
+    card.tabIndex = 0;
     card.innerHTML = `
       <div class="binder"><span></span><span></span><span></span></div>
-      <div class="card-photo" style="background-image:url(${r.image_url})"></div>
+      <div class="card-photo" style="background-image:url(${r.image})"></div>
       <div class="card-body">
         <span class="card-tag">${r.category}</span>
         <h3 class="card-title">${r.title}</h3>
@@ -35,8 +34,9 @@ async function loadRecipes() {
 
   function openRecipe(index) {
     const r = recipes[index];
+
     modalBody.innerHTML = `
-      <div class="modal-banner" style="background-image:url('${r.image_url}')"></div>
+      <div class="modal-banner" style="background-image:url('${r.image}')"></div>
       <div class="modal-inner">
         <span class="card-tag">${r.category}</span>
         <h2>${r.title}</h2>

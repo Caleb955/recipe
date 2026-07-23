@@ -5,7 +5,12 @@ content %}
   {% if error %}
   <div class="alert alert-danger">{{ error }}</div>
   {% endif %}
-  <form method="POST" class="js-upload-recipe">
+  <form
+    method="POST"
+    class="js-upload-recipe"
+    action="/add-recipe"
+    enctype="multipart/form-data"
+  >
     <div class="mb-3">
       <label class="form-label">Recipe Name</label>
       <input type="text" class="form-control" name="title" required />
@@ -27,13 +32,14 @@ content %}
 
     <div class="mb-3">
       <label class="form-label">Picture URL</label>
-      <input
+      <!-- <input
         type="url"
         class="form-control"
         name="image_url"
         placeholder="https://..."
         required
-      />
+      /> -->
+      <input type="file" name="image" accept="image/*" required />
     </div>
 
     <div class="mb-3">
@@ -81,6 +87,4 @@ content %}
     <button type="submit" class="btn btn-extra w-100">Upload Recipe</button>
   </form>
 </div>
-{% endblock %} {% block scripts %}
-<script src="{{ url_for('static', filename='js/add_recipe.js') }}"></script>
 {% endblock %}

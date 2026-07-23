@@ -1,5 +1,5 @@
-import os
-from flask import Flask, render_template, request, redirect, url_for, session
+import os, base64
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Response
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Recipe
 
@@ -25,11 +25,18 @@ def about():
 
 @app.route('/get-recipes')
 def get_recipes():
-    return [
+    recipes = Recipe.query.all()
+
+    return jsonify([
         {"id": r.id, "title": r.title, "category": r.category,
-         "time_string": r.time_string, "image_url": r.image_url, "servings": r.servings}
-        for r in Recipe.query.all()
-    ]
+         "time_string": r.time_string, "image": f"/recipe/{r.id}/image", "ingredients": r.ingredients, "steps": r.steps,"servings": r.servings, "creation_date": r.creation_date}
+        for r in recipes
+    ])
+
+@app.route('/recipe/<int:id>/image')
+def recipe_image(id):
+    recipe = Recipe.query.get_or_404(id)
+    return Response(recipe.image, mimetype=recipe.image_type)
 
 @app.route('/get_recipe')
 def get_recipe():
@@ -97,12 +104,19 @@ def add_recipe():
         return redirect(url_for('login'))
 
     if request.method == 'POST':
+        image_file = request.files.get("image")
+
+        print(image_file)
+
+        image_bytes = image_file.read()
+
         new_recipe = Recipe(
             user_id=session['user']['id'],
             title=request.form.get('title'),
             category=request.form.get('category'),
             time_string=request.form.get('time_string'),
-            image_url=request.form.get('image_url'),
+            image=image_bytes,
+            image_type=image_file.mimetype,
             servings=request.form.get('servings'),
             ingredients=[line.strip() for line in request.form.get('ingredients', '').split('\n') if line.strip()],
             steps=[line.strip() for line in request.form.get('steps', '').split('\n') if line.strip()]
@@ -115,6 +129,10 @@ def add_recipe():
     with app.app_context():
         db.create_all()  # creates app.db + tables automatically if missing
 
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)

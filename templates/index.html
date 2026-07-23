@@ -1,14 +1,10 @@
-{% extends "base.html" %}
-{% block title %}Group 10 Recipes{% endblock %}
-
-{% block extra_style %}
+{% extends "base.html" %} {% block title %}Group 10 Recipes{% endblock %} {%
+block extra_style %}
 <link
   rel="stylesheet"
   href="{{ url_for('static', filename='css/index.css') }}"
 />
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="text-center hero-section">
   <div class="hero-container px-4 py-5">
     <div class="overlay"></div>
@@ -36,10 +32,9 @@
         Everything you need to discover, save, and cook delicious meals.
       </h2>
       <p class="text-body-secondary">
-        Explore thousands of easy-to-follow recipes, discover new flavors,
-        and keep your favourite dishes organized in one place. Whether
-        you're a beginner or an experienced home cook, we've got recipes
-        you'll love.
+        Explore thousands of easy-to-follow recipes, discover new flavors, and
+        keep your favourite dishes organized in one place. Whether you're a
+        beginner or an experienced home cook, we've got recipes you'll love.
       </p>
       <a href="/recipes" class="btn btn-extra btn-lg">Browse Recipes</a>
     </div>
@@ -55,8 +50,8 @@
             Easy-to-Follow Recipes
           </h4>
           <p class="text-body-secondary">
-            Clear ingredients, simple instructions, and step-by-step
-            guidance make every recipe easy to prepare.
+            Clear ingredients, simple instructions, and step-by-step guidance
+            make every recipe easy to prepare.
           </p>
         </div>
         <div class="col d-flex flex-column gap-2">
@@ -83,8 +78,8 @@
             Search by ingredients
           </h4>
           <p class="text-body-secondary">
-            Already have ingredients at home? Find recipes you can cook
-            without another trip to the store.
+            Already have ingredients at home? Find recipes you can cook without
+            another trip to the store.
           </p>
         </div>
         <div class="col d-flex flex-column gap-2">
@@ -118,6 +113,8 @@
 </div>
 {% endblock %}
 
-{% block scripts %}
+<!-- experimental data fetching from database -->
+
+<!-- {% block scripts %}
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-{% endblock %}
+{% endblock %} -->
