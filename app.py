@@ -44,9 +44,9 @@ def get_recipe():
     if not r:
         return {"error": "Recipe not found"}, 404
     return {"id": r.id, "title": r.title, "category": r.category, "time_string": r.time_string,
-            "image_url": r.image_url, "servings": r.servings,
+            "image": f"/recipe/{r.id}/image", "servings": r.servings,
             "ingredients": r.ingredients, "steps": r.steps}
-
+    
 @app.route('/recipe-detail')
 def recipe_detail_page():
     return render_template('recipe_detail.html')
@@ -124,8 +124,8 @@ def add_recipe():
         return redirect(url_for('recipes'))
     return render_template('add_recipe.html')
 
-    with app.app_context():
-        db.create_all()  # creates app.db + tables automatically if missing
+with app.app_context():
+    db.create_all()  # creates app.db + tables automatically if missing
 
 
 @app.route('/profile')
@@ -135,7 +135,9 @@ def profile():
 
     user = session.get("user")
     print(user['first_name'])
-    return render_template('profile.html')
+    user_recipes = Recipe.query.filter_by(user_id=session['user']['id']).all() #db query to get recipes for the logged-in user
+    
+    return render_template('profile.html', user=user, user_recipes=user_recipes)
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)

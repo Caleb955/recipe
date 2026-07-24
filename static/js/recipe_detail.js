@@ -4,7 +4,7 @@
 
   const containerElement = document.querySelector(".js-container");
   containerElement.innerHTML = `
-    <div class="modal-banner" style="background-image: url('${recipe.image_url}')"></div>
+    <div class="modal-banner" style="background-image: url('${recipe.image}')"></div>
     <div class="modal-inner">
       <span class="card-tag">${recipe.category}</span>
       <h2>${recipe.title}</h2>
