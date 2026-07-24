@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Recipe Detail{% endblock %}
+{% block extra_style %}
+    <style>
+      body {
+        background-color: #d8c9a8;
+        font-family: "Work Sans", sans-serif;
+      }
+      .container {
+        width: min(100%, 40em);
+        margin-inline: auto;
+      }
+      .recipe-modal-content {
+        background: #f5ead6;
+        border: none;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+      .modal-banner {
+        height: 240px;
+        background-size: cover;
+        background-position: center;
+      }
+      .modal-inner {
+        padding: 1.75rem 2rem 2rem;
+      }
+      .modal-inner .card-tag {
+        display: inline-block;
+        font-size: 0.68rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        background: #6e8b74;
+        color: #fff;
+        padding: 0.15rem 0.5rem;
+        border-radius: 20px;
+        margin-bottom: 0.75rem;
+      }
+      .modal-inner h2 {
+        font-weight: 700;
+        margin: 0 0 0.25rem;
+      }
+      .modal-inner .card-meta {
+        color: #7a7061;
+        margin-bottom: 1.25rem;
+      }
+      .modal-columns {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 2rem;
+      }
+      @media (max-width: 576px) {
+        .modal-columns {
+          grid-template-columns: 1fr;
+        }
+      }
+      .modal-inner h3 {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #b84c3e;
+        margin-bottom: 0.75rem;
+      }
+      .ingredient-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .ingredient-list li {
+        padding: 0.35rem 0;
+        border-bottom: 1px dashed #d8c9a8;
+        font-size: 0.93rem;
+      }
+      .steps-list {
+        padding-left: 1.1rem;
+        margin: 0;
+      }
+      .steps-list li {
+        padding: 0.3rem 0;
+        font-size: 0.93rem;
+      }
+      .back-btn {
+        margin-top: 1rem;
+      }
+    </style>
+{% endblock %}    
+{% block content %}
+  <body>
+    <div class="container">
+      <button onclick="window.history.back()" class="btn btn-sm back-btn">
+        &larr; Back
+      </button>
+      <div class="js-container"></div>
+    </div>
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='js/recipe_detail.js') }}"></script>
+    {% endblock  %}
+{% endblock %}  
