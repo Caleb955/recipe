@@ -105,7 +105,8 @@ def add_recipe():
     if request.method == 'POST':
         image_file = request.files.get("image")
 
-        print(image_file)
+        if not image_file or not image_file.filename:
+            return render_template('add_recipe.html', error='Please choose an image to upload.')
 
         image_bytes = image_file.read()
 

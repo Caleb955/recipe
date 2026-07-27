@@ -1,5 +1,15 @@
 const recipeElement = document.querySelector(".js-recipe-carousel");
 
+function escapeHtml(str) {
+  return String(str ?? "").replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  })[c]);
+}
+
 async function loadRecipes() {
   let indexRecipeHTML = "";
 
@@ -26,16 +36,16 @@ async function loadRecipes() {
             <div class="card-body">
               <div class="card-carte mb-2 d-flex justify-content-between">
                 <div class="card-carte-name border border-1 px-2 fit-data">
-                  <small>${r.category}</small>
+                  <small>${escapeHtml(r.category)}</small>
                 </div>
               </div>
 
               <div>
                 <h4 class="card-title fs-5">
-                  ${r.title}
+                  ${escapeHtml(r.title)}
                 </h4>
                 <p class="card-text text-truncate-2">
-                  ${(r.ingredients || []).slice(0, 2).join(", ")}
+                  ${(r.ingredients || []).slice(0, 2).map(escapeHtml).join(", ")}
                 </p>
                 <div
                   class="d-flex justify-content-between align-items-center mt-auto"

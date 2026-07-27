@@ -86,7 +86,6 @@
     </style>
 {% endblock %}    
 {% block content %}
-  <body>
     <div class="container">
       <button onclick="window.history.back()" class="btn btn-sm back-btn">
         &larr; Back
@@ -96,4 +95,4 @@
     {% block scripts %}
     <script src="{{ url_for('static', filename='js/recipe_detail.js') }}"></script>
     {% endblock  %}
-{% endblock %}  
+{% endblock %}
