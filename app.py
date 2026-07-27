@@ -29,7 +29,8 @@ def get_recipes():
 
     return jsonify([
         {"id": r.id, "title": r.title, "category": r.category,
-         "time_string": r.time_string, "image": f"/recipe/{r.id}/image", "ingredients": r.ingredients, "steps": r.steps,"servings": r.servings, "creation_date": r.creation_date}
+         "time_string": r.time_string, "image": f"/recipe/{r.id}/image", "ingredients": r.ingredients, "steps": r.steps,"servings": r.servings, "creation_date": r.creation_date,
+         "uploader": f"{r.user.first_name} {r.user.last_name}" if r.user else "Unknown"}
         for r in recipes
     ])
 

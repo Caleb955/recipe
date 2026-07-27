@@ -26,3 +26,4 @@ class Recipe(db.Model):
     steps = db.Column(db.JSON)
     servings = db.Column(db.String(50))
     creation_date = db.Column(db.Date, default=date.today)
+    user = db.relationship('User')

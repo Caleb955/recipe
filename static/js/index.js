@@ -28,15 +28,6 @@ async function loadRecipes() {
                 <div class="card-carte-name border border-1 px-2 fit-data">
                   <small>${r.category}</small>
                 </div>
-
-                <div class="card-ratings">
-                  <i
-                    class="fa-solid fa-star"
-                    style="color: rgb(255, 212, 59)"
-                  ></i>
-                  <span>4.8</span>
-                  <span>(271)</span>
-                </div>
               </div>
 
               <div>
@@ -44,9 +35,7 @@ async function loadRecipes() {
                   ${r.title}
                 </h4>
                 <p class="card-text text-truncate-2">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                  ${(r.ingredients || []).slice(0, 2).join(", ")}
                 </p>
                 <div
                   class="d-flex justify-content-between align-items-center mt-auto"
