@@ -3,28 +3,36 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Recipe
 
+# Initialize Flask application
 app = Flask(__name__)
+# Secret key for session management; in production, use a strong secret from environment
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-for-local-only')
 
+# Database configuration
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# Initialize the database with the Flask app
 db.init_app(app)
 
 @app.route('/')
 def index():
+    #Render the home page.
     return render_template('index.html')
 
 @app.route('/recipes')
 def recipes():
+    #Render the recipes listing page.#
     return render_template('recipes.html')
 
 @app.route('/about')
 def about():
+    #Render the about page.#
     return render_template('about.html')
 
 @app.route('/get-recipes')
 def get_recipes():
+    #Return JSON list of all recipes with details for the frontend.#
     recipes = Recipe.query.all()
 
     return jsonify([
@@ -36,11 +44,13 @@ def get_recipes():
 
 @app.route('/recipe/<int:id>/image')
 def recipe_image(id):
+    #Serve the image for a given recipe ID.#
     recipe = Recipe.query.get_or_404(id)
     return Response(recipe.image, mimetype=recipe.image_type)
 
 @app.route('/get_recipe')
 def get_recipe():
+    #Return JSON for a single recipe by ID (used for modal details).#
     r = Recipe.query.get(request.args.get('id'))
     if not r:
         return {"error": "Recipe not found"}, 404
@@ -50,10 +60,12 @@ def get_recipe():
     
 @app.route('/recipe-detail')
 def recipe_detail_page():
+    #Render the detailed view page for a recipe.#
     return render_template('recipe_detail.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    #Handle user registration via GET (show form) and POST (process form).#
     if request.method == 'POST':
         first_name = request.form.get('first_name', '').strip()
         last_name = request.form.get('last_name', '').strip()
@@ -76,6 +88,7 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    #Handle user login via GET (show form) and POST (process credentials).#
     if request.method == 'POST':
         email = request.form.get('email', '').strip()
         password = request.form.get('password', '')
@@ -129,6 +142,9 @@ def add_recipe():
 with app.app_context():
     db.create_all()  # creates app.db + tables automatically if missing
 
+@app.route('/saved')
+def saved():
+    return 'This is the saved'
 
 @app.route('/profile')
 def profile():
@@ -142,4 +158,4 @@ def profile():
     return render_template('profile.html', user=user, user_recipes=user_recipes)
 
 if __name__ == '__main__':
-    app.run(port=3000, debug=True)
+    app.run(host="0.0.0.0" ,port=3000, debug=True)

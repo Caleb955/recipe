@@ -1,37 +1,44 @@
 <!doctype html>
+<!-- Base template for the Group 10 Recipes application -->
 <html lang="en">
   <head>
+    <!-- Basic meta tags for character set and responsive viewport -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Page title defined by child templates via title block -->
     <title>{% block title %}Group 10 Recipes{% endblock %}</title>
+    <!-- Bootstrap CSS from static vendor folder -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}"
       rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
     />
+    <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.min.css') }}"
     />
+    <!-- Font Awesome icons -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='vendor/fontawesome/css/all.min.css') }}"
+    />
+    <!-- Custom application stylesheet -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
 
-    <script
-      src="https://kit.fontawesome.com/fce603bd4c.js"
-      crossorigin="anonymous"
-    ></script>
-
+    <!-- Additional page-specific styles can be injected here -->
     {% block extra_style %}{% endblock %}
   </head>
   <body>
+    <!-- Page header with navigation and user controls -->
     <header class="p-3">
       <div class="container">
         <div
           class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
         >
+          <!-- Brand/logo link to home -->
           <a
             href="/"
             class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
@@ -46,6 +53,7 @@
               <use xlink:href="#bootstrap"></use>
             </svg>
           </a>
+          <!-- Navigation menu -->
           <ul
             class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
           >
@@ -72,6 +80,7 @@
             </li>
           </ul>
 
+          <!-- User profile dropdown or login/signup links -->
           <div class="text-end">
             {% if session.user %}
             <div class="d-flex">
@@ -82,6 +91,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
+                  <!-- Circular avatar showing user's initial and color -->
                   <div
                     class="rounded-circle"
                     style="
@@ -104,6 +114,12 @@
                   </li>
                   <li><a class="dropdown-item" href="/profile">Profile</a></li>
                   <li><hr class="dropdown-divider" /></li>
+                                  
+                  <li>
+                    <a class="dropdown-item" href="/saved">Saved</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+
+
                   <li>
                     <form action="/logout" method="post">
                       <button class="dropdown-item">Signout</button>
@@ -114,6 +130,7 @@
             </div>
 
             {% else %}
+            <!-- Links for guests -->
             <a href="/login" class="btn me-2">Login</a>
             <a href="/signup" class="btn btn-extra">Sign-up</a>
             {% endif %}
@@ -122,8 +139,10 @@
       </div>
     </header>
 
+    <!-- Main page content injected by child templates -->
     {% block content %}{% endblock %}
 
+    <!-- Footer section -->
     <div class="container">
       <footer
         class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
@@ -143,12 +162,12 @@
       </footer>
     </div>
 
+    <!-- Bootstrap bundle JS (includes Popper) -->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
+      src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"
     ></script>
 
+    <!-- Page-specific scripts can be injected here -->
     {% block scripts %}{% endblock %}
   </body>
 </html>
