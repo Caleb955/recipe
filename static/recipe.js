@@ -1,17 +1,20 @@
 async function loadRecipes() {
-  const recipes = await fetch("/get-recipes").then(r => r.json());
+  const recipes = await fetch("/get-recipes").then((r) => r.json());
   const grid = document.getElementById("recipeGrid");
   const filterBar = document.getElementById("categoryFilter");
   const modalBody = document.getElementById("modalBody");
-  const recipeModal = new bootstrap.Modal(document.getElementById("recipeModal"));
+  const recipeModal = new bootstrap.Modal(
+    document.getElementById("recipeModal"),
+  );
 
   let activeCategory = "All";
 
   function renderCards() {
     grid.innerHTML = "";
-    const visible = activeCategory === "All"
-      ? recipes
-      : recipes.filter(r => r.category === activeCategory);
+    const visible =
+      activeCategory === "All"
+        ? recipes
+        : recipes.filter((r) => r.category === activeCategory);
 
     visible.forEach((r) => {
       const card = document.createElement("article");
@@ -29,22 +32,27 @@ async function loadRecipes() {
       `;
       const open = () => openRecipe(r);
       card.addEventListener("click", open);
-      card.addEventListener("keydown", (e) => { if (e.key === "Enter") open(); });
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") open();
+      });
       grid.appendChild(card);
     });
   }
 
   function renderFilters() {
-    const categories = ["All", ...new Set(recipes.map(r => r.category))];
+    const categories = ["All", ...new Set(recipes.map((r) => r.category))];
     filterBar.innerHTML = "";
     categories.forEach((category) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "category-pill" + (category === activeCategory ? " active" : "");
+      btn.className =
+        "category-pill" + (category === activeCategory ? " active" : "");
       btn.textContent = category;
       btn.addEventListener("click", () => {
         activeCategory = category;
-        filterBar.querySelectorAll(".category-pill").forEach(el => el.classList.remove("active"));
+        filterBar
+          .querySelectorAll(".category-pill")
+          .forEach((el) => el.classList.remove("active"));
         btn.classList.add("active");
         renderCards();
       });
@@ -63,11 +71,11 @@ async function loadRecipes() {
         <div class="modal-columns">
           <div>
             <h3>Ingredients</h3>
-            <ul class="ingredient-list">${r.ingredients.map(i => `<li>${i}</li>`).join("")}</ul>
+            <ul class="ingredient-list">${r.ingredients.map((i) => `<li>${i}</li>`).join("")}</ul>
           </div>
           <div>
             <h3>Method</h3>
-            <ol class="steps-list">${r.steps.map(s => `<li>${s}</li>`).join("")}</ol>
+            <ol class="steps-list">${r.steps.map((s) => `<li>${s}</li>`).join("")}</ol>
           </div>
         </div>
       </div>
@@ -78,4 +86,5 @@ async function loadRecipes() {
   renderFilters();
   renderCards();
 }
+
 loadRecipes();
