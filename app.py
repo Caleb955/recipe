@@ -1,7 +1,12 @@
-import os, base64
+import os
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Response
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Recipe
+
+# loads variables from .env into environment
+
+load_dotenv()
 
 # Initialize Flask application
 app = Flask(__name__)
@@ -9,9 +14,25 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-for-local-only')
 
 # Database configuration
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
+# basedir = os.path.abspath(os.path.dirname(__file__))
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+if DATABASE_URL:
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+else:
+    # fallback to local SQLite for offline dev
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 # Initialize the database with the Flask app
 db.init_app(app)
 
