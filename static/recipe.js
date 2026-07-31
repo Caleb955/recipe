@@ -84,7 +84,35 @@ async function loadRecipes() {
     try {
       const currentUrl = window.location.origin + "/recipe-detail?id=" + r.id;
 
-      await navigator.clipboard.writeText(currentUrl);
+      copyUrl(currentUrl);
+
+      function copyUrl(url) {
+        if (navigator.clipboard && window.isSecureContext) {
+          // Modern approach - works on most current browsers/devices
+          navigator.clipboard
+            .writeText(url)
+            .then(() => null)
+            .catch(() => fallbackCopy(url));
+        } else {
+          // Fallback for older browsers / non-HTTPS
+          fallbackCopy(url);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(textArea);
+      }
     } catch (err) {
       shareElement(err);
     }

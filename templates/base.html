@@ -36,10 +36,10 @@
     <header class="p-3">
       <div class="container">
         <div
-          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+          class="d-flex flex-wrap align-items-center justify-content-between"
         >
           <!-- Brand/logo link to home -->
-          <a
+          <!-- <a
             href="/"
             class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
           >
@@ -52,11 +52,9 @@
             >
               <use xlink:href="#bootstrap"></use>
             </svg>
-          </a>
+          </a> -->
           <!-- Navigation menu -->
-          <ul
-            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-          >
+          <ul class="nav me-lg-auto mb-2 mb-md-0">
             <li>
               <a
                 href="/"
@@ -113,12 +111,11 @@
                     >
                   </li>
                   <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                  <li><hr class="dropdown-divider" /></li>
-                                  
-                  <li>
-                    <a class="dropdown-item" href="/saved">Saved</a></li>
-                  <li><hr class="dropdown-divider" /></li>
 
+                  <li>
+                    <a class="dropdown-item" href="/saved">Saved</a>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
 
                   <li>
                     <form action="/logout" method="post">
@@ -163,9 +160,7 @@
     </div>
 
     <!-- Bootstrap bundle JS (includes Popper) -->
-    <script
-      src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"
-    ></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Page-specific scripts can be injected here -->
     {% block scripts %}{% endblock %}
