@@ -169,6 +169,13 @@
         flex-wrap: wrap;
         gap: 0.6rem;
       }
+
+      @media (max-width: 1200px) {
+        .category-filter {
+          margin-inline: 10px;
+        }
+      }
+
       .category-pill {
         font-family: "Space Mono", monospace;
         font-size: 0.75rem;
@@ -180,7 +187,9 @@
         padding: 0.4rem 0.9rem;
         border-radius: 20px;
         cursor: pointer;
-        transition: background 0.15s ease, color 0.15s ease;
+        transition:
+          background 0.15s ease,
+          color 0.15s ease;
       }
       .category-pill:hover {
         background: rgba(110, 139, 116, 0.25);
@@ -213,6 +222,24 @@
         line-height: 1;
         cursor: pointer;
       }
+
+      .model-share-btn {
+        position: absolute;
+        top: 60px;
+        right: 14px;
+        z-index: 5;
+        background: rgba(46, 42, 36, 0.55);
+        color: #fff;
+        border: none;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
       .modal-banner {
         height: 240px;
         background-size: cover;
@@ -278,7 +305,6 @@
         text-align: center;
       }
     </style>
-
   </head>
   <body>
     <header class="p-3">
@@ -386,6 +412,10 @@
           >
             &times;
           </button>
+
+          <div class="model-share-btn js-model-share">
+            <i class="fa-solid fa-share" style="color: rgb(255, 255, 255)"></i>
+          </div>
           <div id="modalBody"></div>
         </div>
       </div>
@@ -482,9 +512,7 @@
       </footer>
     </div>
 
-    <script
-      src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"
-    ></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <script src="{{ url_for('static', filename='recipe.js') }}"></script>
 

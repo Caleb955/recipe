@@ -60,7 +60,7 @@ async function loadRecipes() {
     });
   }
 
-  function openRecipe(r) {
+  async function openRecipe(r) {
     modalBody.innerHTML = `
       <div class="modal-banner" style="background-image:url('${r.image}')"></div>
       <div class="modal-inner">
@@ -80,6 +80,15 @@ async function loadRecipes() {
         </div>
       </div>
     `;
+
+    try {
+      const currentUrl = window.location.origin + "/recipe-detail?id=" + r.id;
+
+      await navigator.clipboard.writeText(currentUrl);
+    } catch (err) {
+      shareElement(err);
+    }
+
     recipeModal.show();
   }
 
@@ -88,3 +97,19 @@ async function loadRecipes() {
 }
 
 loadRecipes();
+
+function shareElement(param) {
+  const shareElement = document.querySelector(".js-model-share");
+
+  if (param) {
+    shareElement.addEventListener("click", () => {
+      alert("Could not copy link automatically.");
+    });
+  } else {
+    shareElement.addEventListener("click", () => {
+      alert("URL Copied!");
+    });
+  }
+}
+
+shareElement();
