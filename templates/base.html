@@ -139,6 +139,102 @@
     <!-- Main page content injected by child templates -->
     {% block content %}{% endblock %}
 
+    <!-- Why choose us section -->
+    <section class="wcu-section">
+      <div class="wcu-card">
+        <div class="wcu-image">
+          <img
+            src="{{ url_for('static', filename='/vecteezy_vibrant-vegetables-falling-into-a-pan-a-delicious-and_56608552.png') }}"
+            alt="Fresh vegetables"
+          />
+          <!-- Replace veggies.png with your own transparent-background produce image -->
+        </div>
+
+        <div class="wcu-content">
+          <h2 class="wcu-heading">Built For How You Actually Cook</h2>
+
+          <div class="wcu-features">
+            <div class="wcu-feature">
+              <div class="wcu-icon wcu-icon--orange">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+              <div class="wcu-text">
+                <h3>Share Recipes That Actually Work</h3>
+                <p>
+                  Post real, tested steps and photos so others know it's not
+                  just theory.
+                </p>
+              </div>
+            </div>
+
+            <div class="wcu-divider"></div>
+
+            <div class="wcu-feature">
+              <div class="wcu-icon wcu-icon--green">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 20V10M10 20V4M16 20v-7M22 20V8"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </div>
+              <div class="wcu-text">
+                <h3>Every Recipe Has a Face Behind It</h3>
+                <p>Real cooks sharing real dishes, not anonymous listings.</p>
+              </div>
+            </div>
+
+            <div class="wcu-divider"></div>
+
+            <div class="wcu-feature">
+              <div class="wcu-icon wcu-icon--orange">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 9h14l-1.5 9a2 2 0 0 1-2 1.7H8.5a2 2 0 0 1-2-1.7L5 9z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M8 9a4 4 0 0 1 8 0"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  ></path>
+                </svg>
+              </div>
+              <div class="wcu-text">
+                <h3>No Recipe Left Untested</h3>
+                <p>
+                  Everything shared here has actually been cooked, not just
+                  copied from somewhere else.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer section -->
     <div class="container">
       <footer

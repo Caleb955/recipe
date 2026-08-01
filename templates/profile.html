@@ -33,7 +33,7 @@
         <div class="card-body p-4 text-black">
           <div class="mb-5 text-body">
             <p class="lead fw-normal mb-1">About</p>
-            <div class="p-4 bg-body-tertiary">
+            <div class="p-4 bg-body-tertiary js-about-info">
               <p class="font-italic mb-1">Web Developer</p>
               <p class="font-italic mb-1">Lives in Uyo Nigeria</p>
               <p class="font-italic mb-0">Photographer</p>
@@ -80,4 +80,8 @@
     </form>
   </div>
 </section>
+{% endblock %} {% block scripts %}
+<script>
+  const aboutElement = document.querySelector(".js-about-info");
+</script>
 {% endblock %}

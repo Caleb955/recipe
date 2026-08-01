@@ -310,9 +310,10 @@
     <header class="p-3">
       <div class="container">
         <div
-          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+          class="d-flex flex-wrap align-items-center justify-content-between"
         >
-          <a
+          <!-- Brand/logo link to home -->
+          <!-- <a
             href="/"
             class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
           >
@@ -325,29 +326,33 @@
             >
               <use xlink:href="#bootstrap"></use>
             </svg>
-          </a>
-          <ul
-            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-          >
+          </a> -->
+          <!-- Navigation menu -->
+          <ul class="nav me-lg-auto mb-2 mb-md-0">
             <li>
-              <a href="/" class="nav-link px-2 text-dark">Home</a>
+              <a
+                href="/"
+                class="nav-link px-2 {{ 'text-secondary' if request.path == '/' else 'text-dark' }}"
+                >Home</a
+              >
             </li>
             <li>
-              <a href="recipes" class="nav-link px-2 text-secondary">Recipes</a>
+              <a
+                href="/recipes"
+                class="nav-link px-2 {{ 'text-secondary' if request.path == '/recipes' else 'text-dark' }}"
+                >Recipes</a
+              >
             </li>
             <li>
-              <a href="about" class="nav-link px-2 text-dark">About</a>
+              <a
+                href="/about"
+                class="nav-link px-2 {{ 'text-secondary' if request.path == '/about' else 'text-dark' }}"
+                >About</a
+              >
             </li>
           </ul>
 
-          <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input
-            type="search"
-            class="form-control form-control-dark text-bg-dark"
-            placeholder="Search..."
-            aria-label="Search"
-          />
-        </form> -->
+          <!-- User profile dropdown or login/signup links -->
           <div class="text-end">
             {% if session.user %}
             <div class="d-flex">
@@ -358,24 +363,34 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
+                  <!-- Circular avatar showing user's initial and color -->
                   <div
                     class="rounded-circle"
-                    style="background-color:  {{ session.user.color if session.user.color else lightslategray }}"
+                    style="
+                      background-color: {{ session.user.color }};
+                      width: 32px;
+                      height: 32px;
+                      display: inline-block;
+                      text-align: center;
+                    "
                   >
-                    <small>{{ session.user.short_name }}</small>
+                    <span>{{ session.user.short_name }}</span>
                   </div>
                 </a>
+
                 <ul class="dropdown-menu text-small">
                   <li>
-                    <a class="dropdown-item" href="/new_recipe">New recipe</a>
+                    <a class="dropdown-item" href="/new_recipe"
+                      >New recipe...</a
+                    >
                   </li>
-
                   <li><a class="dropdown-item" href="/profile">Profile</a></li>
 
                   <li>
-                    <a class="dropdown-item" href="/new_recipe">Saved</a>
+                    <a class="dropdown-item" href="/saved">Saved</a>
                   </li>
                   <li><hr class="dropdown-divider" /></li>
+
                   <li>
                     <form action="/logout" method="post">
                       <button class="dropdown-item">Signout</button>
@@ -384,7 +399,9 @@
                 </ul>
               </div>
             </div>
+
             {% else %}
+            <!-- Links for guests -->
             <a href="/login" class="btn me-2">Login</a>
             <a href="/signup" class="btn btn-extra">Sign-up</a>
             {% endif %}
@@ -403,7 +420,7 @@
 
     <div class="category-filter" id="categoryFilter"></div>
 
-    <main class="recipe-grid" id="recipeGrid"></main>
+    <main class="recipe-grid px-3" id="recipeGrid"></main>
 
     <!-- Bootstrap modal shell — content gets filled in by JS on click -->
     <div class="modal fade" id="recipeModal" tabindex="-1" aria-hidden="true">

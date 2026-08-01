@@ -129,3 +129,120 @@ body {
   min-width: 240px;
   cursor: pointer;
 }
+
+/* Why Choose Us Section */
+
+.wcu-section {
+  padding: 60px 24px;
+  /* background: #ffffff; */
+}
+
+.wcu-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  /* background: #e7efe0; */
+  border-radius: 28px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.wcu-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wcu-image img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  object-fit: contain;
+}
+
+.wcu-heading {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e3a3a;
+  letter-spacing: 0.5px;
+  margin: 0 0 28px;
+}
+
+.wcu-features {
+  display: flex;
+  flex-direction: column;
+}
+
+.wcu-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0;
+}
+
+.wcu-divider {
+  height: 1px;
+  background: rgba(30, 58, 58, 0.15);
+  margin: 0;
+}
+
+.wcu-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wcu-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.wcu-icon--orange {
+  color: #e07a2c;
+}
+
+.wcu-icon--green {
+  color: #4a7c3f;
+}
+
+.wcu-text h3 {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 700;
+  font-style: italic;
+  color: #1e3a3a;
+  margin: 0 0 6px;
+}
+
+.wcu-text p {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5c6b63;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wcu-card {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    gap: 32px;
+  }
+
+  .wcu-image img {
+    max-width: 280px;
+  }
+
+  .wcu-heading {
+    font-size: 24px;
+    text-align: center;
+  }
+}
