@@ -38,7 +38,7 @@ async function loadRecipes() {
       grid.appendChild(card);
     });
       grid.querySelectorAll('.like-btn').forEach(btn => {
-          btn.addEventListener('click', () => toggleLike(btn.dataset.id, btn.querySelector('i')));
+        btn.addEventListener('click', () => toggleLike(btn.dataset.id, btn));
       });
   }
 
@@ -68,6 +68,7 @@ async function loadRecipes() {
       <div class="modal-banner" style="background-image:url('${r.image}')"></div>
       <div class="modal-inner">
         <span class="card-tag">${r.category}</span>
+        ${heartBtn(r)}
         <h2>${r.title}</h2>
         <div class="card-author">by ${r.uploader}</div>
         <div class="card-meta">${r.time_string} · ${r.servings}</div>
@@ -122,7 +123,7 @@ async function loadRecipes() {
 
     modalBody.querySelector('.like-btn').addEventListener('click', () => {
       const btn = modalBody.querySelector('.like-btn');
-      toggleLike(btn.dataset.id, btn.querySelector('i'));
+      toggleLike(btn.dataset.id, btn);
     });
     recipeModal.show();
   }
@@ -149,7 +150,7 @@ function shareElement(param) {
 
 function heartBtn(r) {
   return `<button class="like-btn" data-id="${r.id}" onclick="event.stopPropagation()">
-    <i class="fa-${r.liked ? 'solid' : 'regular'} fa-heart"></i>
+    ${r.liked ? '♥ Liked' : '♡ Like'}
   </button>`;
 }
 
@@ -157,7 +158,7 @@ async function toggleLike(id, iconEl) {
   const res = await fetch(`/toggle-like/${id}`, { method: 'POST' });
   if (res.status === 401) { window.location.href = '/login'; return; }
   const data = await res.json();
-  iconEl.className = data.liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+  iconEl.innerHTML = data.liked ? '♥ Liked' : '♡ Like';
 }
 
 shareElement();
