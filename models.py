@@ -29,6 +29,13 @@ class Recipe(db.Model):
     steps = db.Column(db.JSON)  # List of steps stored as JSON
     servings = db.Column(db.String(50))  # Number of servings
     creation_date = db.Column(db.Date, default=date.today)  # Date the recipe was added
-    
     # Relationship to User: allows accessing the user who posted the recipe via `recipe.user`
     user = db.relationship('User')
+    
+class Like(db.Model):
+    __tablename__ = 'likes'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id'), nullable=False)
+    recipe = db.relationship('Recipe')
+    __table_args__ = (db.UniqueConstraint('user_id', 'recipe_id', name='unique_like'),)    

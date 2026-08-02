@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Response
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User, Recipe
+from models import db, User, Recipe, Like
 
 # loads variables from .env into environment
 
@@ -51,33 +51,41 @@ def about():
     #Render the about page.#
     return render_template('about.html')
 
-@app.route('/get-recipes')
-def get_recipes():
-    #Return JSON list of all recipes with details for the frontend.#
-    recipes = Recipe.query.all()
-
-    return jsonify([
-        {"id": r.id, "title": r.title, "category": r.category,
-         "time_string": r.time_string, "image": f"/recipe/{r.id}/image", "ingredients": r.ingredients, "steps": r.steps,"servings": r.servings, "creation_date": r.creation_date,
-         "uploader": f"{r.user.first_name} {r.user.last_name}" if r.user else "Unknown"}
-        for r in recipes
-    ])
-
 @app.route('/recipe/<int:id>/image')
 def recipe_image(id):
     #Serve the image for a given recipe ID.#
     recipe = Recipe.query.get_or_404(id)
     return Response(recipe.image, mimetype=recipe.image_type)
 
+@app.route('/get-recipes')
+def get_recipes():
+    recipes = Recipe.query.all()
+    liked_ids = set()
+    if 'user' in session:
+        liked_ids = {l.recipe_id for l in Like.query.filter_by(user_id=session['user']['id']).all()}
+
+    return jsonify([
+        {"id": r.id, "title": r.title, "category": r.category,
+         "time_string": r.time_string, "image": f"/recipe/{r.id}/image",
+         "ingredients": r.ingredients, "steps": r.steps, "servings": r.servings,
+         "creation_date": r.creation_date,
+         "uploader": f"{r.user.first_name} {r.user.last_name}" if r.user else "Unknown",
+         "liked": r.id in liked_ids}
+        for r in recipes
+    ])
+    
 @app.route('/get_recipe')
 def get_recipe():
-    #Return JSON for a single recipe by ID (used for modal details).#
     r = Recipe.query.get(request.args.get('id'))
     if not r:
         return {"error": "Recipe not found"}, 404
+    liked = False
+    if 'user' in session:
+        liked = Like.query.filter_by(user_id=session['user']['id'], recipe_id=r.id).first() is not None
     return {"id": r.id, "title": r.title, "category": r.category, "time_string": r.time_string,
             "image": f"/recipe/{r.id}/image", "servings": r.servings,
-            "ingredients": r.ingredients, "steps": r.steps}
+            "ingredients": r.ingredients, "steps": r.steps, "liked": liked}
+       
     
 @app.route('/recipe-detail')
 def recipe_detail_page():
@@ -163,9 +171,6 @@ def add_recipe():
 with app.app_context():
     db.create_all()  # creates app.db + tables automatically if missing
 
-@app.route('/saved')
-def saved():
-    return 'This is the saved'
 
 @app.route('/profile')
 def profile():
@@ -177,6 +182,30 @@ def profile():
     user_recipes = Recipe.query.filter_by(user_id=session['user']['id']).all() #db query to get recipes for the logged-in user
     
     return render_template('profile.html', user=user, user_recipes=user_recipes)
+
+
+@app.route('/toggle-like/<int:recipe_id>', methods=['POST'])
+def toggle_like(recipe_id):
+    if 'user' not in session:
+        return jsonify({"error": "not logged in"}), 401
+
+    existing = Like.query.filter_by(user_id=session['user']['id'], recipe_id=recipe_id).first()
+    if existing:
+        db.session.delete(existing)
+        db.session.commit()
+        return jsonify({"liked": False})
+    else:
+        db.session.add(Like(user_id=session['user']['id'], recipe_id=recipe_id))
+        db.session.commit()
+        return jsonify({"liked": True})
+
+@app.route('/saved')
+def saved():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+    likes = Like.query.filter_by(user_id=session['user']['id']).all()
+    recipes = [like.recipe for like in likes]
+    return render_template('saved.html', recipes=recipes)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0" ,port=3000, debug=True) 

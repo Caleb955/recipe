@@ -37,6 +37,9 @@ async function loadRecipes() {
       });
       grid.appendChild(card);
     });
+      grid.querySelectorAll('.like-btn').forEach(btn => {
+          btn.addEventListener('click', () => toggleLike(btn.dataset.id, btn.querySelector('i')));
+      });
   }
 
   function renderFilters() {
@@ -117,6 +120,10 @@ async function loadRecipes() {
       shareElement(err);
     }
 
+    modalBody.querySelector('.like-btn').addEventListener('click', () => {
+      const btn = modalBody.querySelector('.like-btn');
+      toggleLike(btn.dataset.id, btn.querySelector('i'));
+    });
     recipeModal.show();
   }
 
@@ -138,6 +145,19 @@ function shareElement(param) {
       alert("URL Copied!");
     });
   }
+}
+
+function heartBtn(r) {
+  return `<button class="like-btn" data-id="${r.id}" onclick="event.stopPropagation()">
+    <i class="fa-${r.liked ? 'solid' : 'regular'} fa-heart"></i>
+  </button>`;
+}
+
+async function toggleLike(id, iconEl) {
+  const res = await fetch(`/toggle-like/${id}`, { method: 'POST' });
+  if (res.status === 401) { window.location.href = '/login'; return; }
+  const data = await res.json();
+  iconEl.className = data.liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
 }
 
 shareElement();
